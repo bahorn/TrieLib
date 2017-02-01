@@ -32,6 +32,7 @@ main()
     std::cout << "Adding two children to the root." << std::endl;
     exampleTrie.add("test", example);
     exampleTrie.add("lol", example);
+    exampleTrie.del("test");
     std::cout << "List the keys we added to the root:" << std::endl;
     for(auto const& l: exampleTrie.list())
         std::cout << "> " << l << std::endl;

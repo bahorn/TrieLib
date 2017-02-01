@@ -31,6 +31,7 @@ namespace Trie {
     Trie<K, T, M>::add(K name, T value)
     {
         Trie<K, T, M> temp;
+        temp.name = name;
         temp.value = value;
         temp.meta = meta;
         this->values.insert(std::make_pair(name, temp));
@@ -40,7 +41,7 @@ namespace Trie {
     template <typename K, typename T, typename M> inline void
     Trie<K, T, M>::del(K name)
     {
-        this->values.earse(name);
+        this->values.erase(name);
     }
 
     /* Obtain the child trie */
@@ -58,6 +59,6 @@ namespace Trie {
         for (auto const& keyname: this->values) {
             output.push_back(keyname.first);
         }
-        return (output);
+        return output;
     }
 };
