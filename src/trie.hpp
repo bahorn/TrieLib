@@ -12,9 +12,11 @@ namespace Trie {
             T value;
             M meta;
             void add(K name, T value);
+            void add(K name, T value, M meta);
             void del(K name);
             Trie<K, T, M> * get(K key);
             std::vector<K> list();
+            Trie<K, T, M> * operator[](K key);
         private:
             std::map<K, Trie<K, T, M>> values;
     };
@@ -26,15 +28,23 @@ namespace Trie {
     {
 
     }
+
     /* add in a new child trie */
     template <typename K, typename T, typename M> inline void 
-    Trie<K, T, M>::add(K name, T value)
+    Trie<K, T, M>::add(K name, T value, M meta)
     {
         Trie<K, T, M> temp;
         temp.name = name;
         temp.value = value;
         temp.meta = meta;
         this->values.insert(std::make_pair(name, temp));
+    }
+
+    template <typename K, typename T, typename M> inline void 
+    Trie<K, T, M>::add(K name, T value)
+    {
+        M meta;
+        this->add(name, value, meta);
     }
 
     /* remove a child from the trie */
@@ -61,4 +71,11 @@ namespace Trie {
         }
         return output;
     }
+
+    template <typename K, typename T, typename M> inline Trie<K, T, M> *
+    Trie<K, T, M>::operator[](K key)
+    {
+        return this->get(key);
+    }
+
 };

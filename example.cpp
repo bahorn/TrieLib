@@ -39,7 +39,7 @@ main()
     std::cout << "Changing the childrens meta objects:" << std::endl;
     for(auto const& l: exampleTrie.list()) {
         /* access the object. */
-        auto child = *exampleTrie.get(l);
+        auto child = *exampleTrie[l];
         /* Change it */
         child.meta.somethingA = 1337;
         std::cout << "somethingA: " << child.meta.somethingA << std::endl;
